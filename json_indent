@@ -12,6 +12,10 @@ def main():
 	parser.add_argument("-i", "--indent", type=int, default=4)
 	args = parser.parse_args()
 
+	if not os.path.isfile(source):
+		print(f"ERROR: No such file at {source}")
+		exit(2)
+
 	source = args.source
 	indent = args.indent
 
