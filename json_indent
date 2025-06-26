@@ -1,0 +1,29 @@
+#!/usr/bin/env python3
+# -*- encoding: utf8 -*-
+
+import json
+import argparse
+
+
+def main():
+	"""Main function"""
+	parser = argparse.ArgumentParser(prog="JSON indent")
+	parser.add_argument("source", type=str)
+	parser.add_argument("-i", "--indent", type=int, default=4)
+	args = parser.parse_args()
+
+	source = args.source
+	indent = args.indent
+
+	with open(source, mode='r', encoding='utf-8') as file:
+		content = file.read()
+
+	json_dict = json.loads(content)
+	jsonify = json.dumps(json_dict, indent=indent)
+
+	with open(source, mode='w', encoding='utf-8') as file:
+		file.write(jsonify)
+
+
+if __name__ == '__main__':
+	main()
